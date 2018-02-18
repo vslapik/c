@@ -1,0 +1,191 @@
+\input{../head.tex}
+
+\title{\Rmnum{1}. Introduction}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 0. Intro
+% 1. What the course is about
+%    - new features (c89,c99,c11)
+%    - the course is rather about how not to write instead of how to write
+%    - traps/common mistakes, etc.
+% 2. Why English
+% 3. Linux, only Linux
+% 4. Audience: refresh/deepen knowledge, a bit challanging for newcomers
+% 5. Strongly suggest implementing practical task
+% 6. Timetable (10 lectures + 1 lecture for practice analyze) around 1:40 each
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{C main steps}
+    \begin{itemize}
+        \note{Miltics 1964; MIT, GE, Bell Labs; concept of file, virtual memory, dynamic linking; PL/1}
+        \note{Unix end of 196x; Bell Labs; concept of file, virtual memory, dynamic linking; PL/1}
+        \item 1969 - 1973: developed by Dennis Ritchie at AT\&T Bell Labs.
+        \pause\item 1978: Brian Kernighan and Dennis Ritchie published the first edition of The C Programming Language (K\&R).
+        \pause\item 1989: the C standard ratified as ANSI X3.159-1989 "Programming Language C" (ANSI C or C89).
+        \pause\item 1990: approved by the ISO as an international standard (C90).
+        \pause\item 1999: revised standart by ISO (C99).
+        \pause\item 2011: the current version approved by ISO (C11).
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Dennis Ritchie, 1941 - 2011}
+    \begin{center}
+        \only<1>{
+            \includegraphics[height=7cm]{richie.png}
+        }
+        \only<2>{
+            \includegraphics[height=7cm]{KandR_book.png}
+        }
+        \only<3>{
+            \includegraphics[height=7cm]{KandR_book2.png}
+        }
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Position in TIOBE index}
+    \begin{center}
+%        \includegraphics[height=7cm]{tiobe_4.png}
+        \includegraphics[width=11cm]{tiobe_4.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Spirit of C}
+    \begin{itemize}
+        \item Trust the programmer.
+        \pause \item Don’t prevent the programmer from doing what needs to be done.
+        \pause \item Keep the language small and simple.
+        \pause \item Provide only one way to do an operation.
+        \pause \item Make it fast, even if it is not guaranteed to be portable.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Languages based on C}
+    \begin{center}
+        \includegraphics[height=7cm]{tree.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Creation of executable module}
+    \begin{center}
+        \includegraphics[height=7cm]{01_flow.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{GCC most frequent options}
+    \only<1>{
+        \lstinputlisting[breaklines,numbers=none,language=]{01_gcc_options.txt}
+    }
+    \only<2>{
+        \begin{center}
+        \scriptsize{
+        \rowcolors{1}{oddrow}{evenrow}
+        \begin{tabular}{ll}
+            \texttt{-c}            & \specialcellhl{Compile or assemble the source files, but do not link; \\
+                                        the output is object files.} \\
+            \texttt{-S}            & Compile only; output assembly code. \\
+            \texttt{-E}            & Pre-process only; output pre-processed code. \\
+            \texttt{-std=standart} & \specialcellhl{Determine the language standard; could be but not limited to\\
+                                        \texttt{c89}, \texttt{c99}, \texttt{c11}, \texttt{gnu11} (default).} \\
+            \texttt{-g}            & Produce debug information. \\
+            \texttt{-pg}           & \specialcellhl{Generate extra code to write profile information \\
+                                        suitable for the analysis program gprof.} \\
+            \texttt{-Olevel}       & Optimization level from \texttt{0} (default) to \texttt{3}; also can be \texttt{-Ofast}, \texttt{-Os}.\\
+            \texttt{-Wwarn}        & \specialcellhl{Enable \texttt{warn} warning; frequently used are: \\
+                                        \texttt{all}, \texttt{pedantic}, \texttt{error}, \texttt{format}.} \\
+            \texttt{-llibrary}     & \specialcellhl{Links to a standard library; use -lm for maths library (libm.so).} \\
+            \texttt{-Dmacro}       & Define a macro, one can also use \texttt{-Dmacro=val}. \\
+            \texttt{-Umacro}       & \specialcellhl{Undefine any previous definition of name, either built-in \\
+                                        or provided with a \texttt{-D} option.} \\
+            \texttt{-Idir}         & \specialcellhl{Add the directory dir to the head of the list of directories \\
+                                        to be searched for header files.} \\
+            \texttt{-Ldir}         & \specialcellhl{Add directory \texttt{dir} to the list of directories to be searched for \texttt{-l}.} \\
+            \texttt{@file}         & Read command-line options from file. \\
+            \texttt{-save-temps}   & Save intermediate files in the current directory. \\
+
+        \end{tabular}
+        }
+        \end{center}
+    }
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Hello world!}
+    \lstinputlisting{01_hello_world.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% It is very common for people to say — or at least think — something like this:
+%
+% The x86 ADD instruction is used to implement C’s signed add operation, and it
+% has two’s complement behavior when the result overflows. I’m developing for
+% an x86 platform, so I should be able to expect two’s complement semantics when
+% 32-bit signed integers overflow.
+%
+% THIS IS WRONG. You are saying something like this:
+%
+% Somebody once told me that in basketball you can’t hold the ball and run.
+% I got a basketball and tried it and it worked just fine. He obviously ddn’t
+% understand basketball.
+\begin{frame}{Undefined, unspecified, implementation-defined behaviour}
+    \only<1>{
+        \justifying
+            The terms unspecified behavior, undefined behavior, and implementation-defined behavior are
+        used to categorize the result of writing programs whose properties the Standard does not, or
+        cannot, completely describe.
+
+    }
+    \only<2>{
+        \begin{block}{Unspecified behaviour:}
+            \justifying
+            behavior where the standard provides two or more possibilities and imposes no further
+            requirements on which is chosen in any instance.
+
+        \end{block}
+        \lstinputlisting{01_unspec_b.c}
+    }
+    \only<3>{
+        \begin{block}{Implementation defined behavour:}
+            \justifying
+            unspecified behavior where each implementation documents how the choice is made.
+
+        \end{block}
+        \lstinputlisting{01_implem_def_b.c}
+    }
+    \only<4>{
+        \note{Abstract C machine: each operation performed by the program is either defined or undefined}
+        \begin{block}{Undefined behaviour:}
+            \justifying
+            behavior, upon use of a nonportable or erroneous program construct or of erroneous data,
+            for which the standard imposes no requirements.
+
+        \end{block}
+        \lstinputlisting{01_undef_b.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Observable behaviour}
+    The observable behavior of the abstract machine is its sequence of reads and writes 
+    to volatile data and calls to library I/O functions.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{C/C++ mythical language}
+    \begin{quote}
+        C/C++ - a mythical language referred to by people who cannot or do not want to
+        recognize the magnitude of differences between the facilities offered by C and C++.
+        \\[5pt]
+        \rightline{{\rm Bjarne Stroustrup}}
+    \end{quote}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Summary}
+    \begin{itemize}
+        \item Know your compiler, learn how to see what it is actually doing, be able to see intermediate steps.
+        \item Be aware of behavior of all language constructs you are using.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

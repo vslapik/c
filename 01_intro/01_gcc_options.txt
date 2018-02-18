@@ -1,0 +1,7 @@
+gcc [-c|-S|-E] [-std=standard]
+    [-g] [-pg] [-Olevel]
+    [-Wwarn...] [-Wpedantic]
+    [-Idir...] [-Ldir...]
+    [-Dmacro[=defn]...] [-Umacro]
+    [-foption...] [-mmachine-option...]
+    [-o outfile] [@file] infile...

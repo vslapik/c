@@ -1,0 +1,30 @@
+digraph flow {
+    "as" [style=filled, fillcolor=yellow,label="Assembler (as)" ];
+    "ld" [style=filled, fillcolor=yellow,label="Linker (ld)"];
+    "cpp" [style=filled, fillcolor=yellow,label="Preprocessor (cpp)"];
+    "cc" [style=filled, fillcolor=yellow,label="Compiler (cc)"];
+    "c1" [style=filled, fillcolor=gray,label="C source file\n main.c"];
+    "c2" [style=filled, fillcolor=gray,label="C source file\n util.c"];
+    "c1i" [style=filled, fillcolor=gray,label="Preprocessor output\n main.i"];
+    "c2i" [style=filled, fillcolor=gray,label="Preprocessor output\n util.i"];
+    "c1o" [style=filled, fillcolor=gray,label="Object file\n main.o"];
+    "c2o" [style=filled, fillcolor=gray,label="Object file\n util.o"];
+    "h" [style=filled, fillcolor=gray,label="Header file\n util.h"];
+    "isrs" [style=filled, fillcolor=gray,label="Assembler source file\n isr.s"];
+    "isro" [style=filled, fillcolor=gray,label="Object file\n isr.o"];
+    "a" [style=filled, fillcolor=gray,label="Static library\n hooks.a"];
+    "so" [style=filled, fillcolor=gray,label="Dynamic library\n libpthread.so"];
+    "libc" [style=filled, fillcolor=gray,label="Dynamic C runtime library\n libc.so"];
+    "startup" [style=filled, fillcolor=gray,label="Statrtup code"];
+    "elf" [style=filled, fillcolor=gray,label="Executable module in ELF format"];
+    "mains" [style=filled, fillcolor=gray,label="Compiler output\n main.s"];
+    "utils" [style=filled, fillcolor=gray,label="Compiler output\n util.s"];
+    "a" -> "ld";
+    "so" -> "ld";
+    "libc" -> "ld";
+    "h" -> "c1" -> "cpp" -> "c1i" -> "cc" -> "mains" -> "as" -> "c1o" -> "ld";
+    "h" -> "c2" -> "cpp" -> "c2i" -> "cc" -> "utils" -> "as" -> "c2o" -> "ld";
+    "isrs" -> "as" -> "isro" -> "ld";
+    "startup" -> "ld";
+    "ld" -> "elf";
+}

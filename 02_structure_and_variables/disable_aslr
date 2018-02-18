@@ -1,0 +1,4 @@
+# 0 - disable
+# 1 - enable stack addr randomization
+# 2 - enable heap addr randomization
+sudo sh -c "echo 0 > /proc/sys/kernel/randomize_va_space"
