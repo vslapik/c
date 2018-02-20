@@ -1,0 +1,100 @@
+\input{../head.tex}
+
+\title{\Rmnum{4}. Control structures}
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% expression returns value
+
+\begin{frame}{Compound statements}
+    \only<1>{
+        \lstinputlisting{04_compound_syntax.c}
+    }
+    \only<2>{
+        \lstinputlisting{04_compound_example.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Selection statements}
+    \only<1>{
+        \lstinputlisting{04_selection_syntax.c}
+    }
+    \only<2>{
+        \begin{tabular}{lcl}
+            \lstinputlisting{04_selection_example_1p.c} & \:\:\:  & \lstinputlisting{04_selection_example_2p.c} \\
+        \end{tabular}
+    }
+    \only<3>{
+        \begin{block}{Is it well defined?}
+            \lstinputlisting{04_selection_example_tern_w.c}
+        \end{block}
+        \begin{block}{What about this?}
+            \lstinputlisting{04_selection_example_tern_u.c}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Iteration statements}
+    \only<1>{
+        \lstinputlisting{04_iteration_syntax.c}
+    }
+    \only<2>{
+        \lstinputlisting{04_infinit_loop.c}
+    }
+    \only<3>{
+        \lstinputlisting{04_for_example.c}
+    }
+    \only<4>{
+        \begin{center}
+            \includegraphics[width=10.5cm]{two_dim_array.png}
+        \end{center}
+        \begin{block}{Slow}
+            \lstinputlisting[numbers=none]{04_two_dim_array_iteration_slow.c}
+        \end{block}
+        \begin{block}{Fast, sequential}
+            \lstinputlisting[numbers=none]{04_two_dim_array_iteration_fast.c}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{goto statement}
+    \note{Eiichi Goto http://en.wikipedia.org/wiki/Eiichi\_Goto}
+    \only<1>{
+        Edsger Dijkstra (March 1968). \\ "Go To Statement Considered Harmful".
+    }
+    \only<2>{
+        \lstinputlisting{04_no_goto_example.c}
+    }
+    \only<3>{
+        \lstinputlisting{04_goto_example.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Common traps}
+    \only<1>{
+        \lstinputlisting{04_ifelse_trap.c}
+    }
+    \only<2>{
+        \lstinputlisting{04_switch_trap1.c}
+    }
+    \only<3>{
+        \lstinputlisting{04_if_trap.c}
+    }
+    \only<4>{
+        \lstinputlisting{04_switch_trap2.c}
+    }
+    \only<5>{
+        \lstinputlisting{04_switch_trap3.c}
+    }
+    \only<6>{
+        \lstinputlisting{04_return.c}
+    }
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
