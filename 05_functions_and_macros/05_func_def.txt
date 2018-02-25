@@ -1,0 +1,5 @@
+<return-type> function_name(<parameter-list>)
+{
+    <statements>
+    return <expression of type return-type>;
+}

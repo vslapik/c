@@ -1,0 +1,13 @@
+#ifndef MY_PRECIOUS_HEADER_H
+#define MY_PRECIOUS_HEADER_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct foo {
+    int bar;
+};
+
+int func(int a);
+
+#endif

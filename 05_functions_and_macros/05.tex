@@ -1,0 +1,164 @@
+\input{../head.tex}
+
+\title{\Rmnum{5}. Functions and Macros}
+
+\begin{document}
+
+% TODO: undefined macro has value 0
+% TODO: tell about #pragma and gcc run hanoi game
+% TODO: tell about func() which can have any arguments
+% TODO: detailed slide about mangling (abs, fabs, llabs ...)
+% TODO: pure functions and gcc 'pure' attribute, mention strlen optimization with pure
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Function definition and declaration}
+    \only<1>{
+        \begin{block}{Declaration}
+            \lstinputlisting[numbers=none]{05_func_decl.txt}
+        \end{block}
+        \begin{block}{Definition}
+            \lstinputlisting[numbers=none]{05_func_def.txt}
+        \end{block}
+    }
+    \only<2>{
+        \begin{block}{Is it wrong? Try with -std=c89 and -std=c99}
+            \lstinputlisting{05_hello_world.c}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Always provide function declaration}
+    \lstinputlisting{c99_remove_implicit_function_declaration.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\kwblack{main} function declaration}
+    \lstinputlisting[numbers=none]{05_main_proto.txt}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\kwblack{static} keyword}
+    \note{mention static data initialization}
+    \begin{block}{main.c}
+        \lstinputlisting[caption=main.c]{05_static_1.c}
+    \end{block}
+    \begin{block}{util.c}
+        \lstinputlisting[caption=util.c]{05_static_2.c}
+    \end{block}
+\end{frame}
+% extern C
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Arguments always passed by value}
+    \begin{block}{Can you make swap work?}
+        \lstinputlisting{05_swap.c}
+    \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Mixing C++ and C}
+    \only<1>{
+        \begin{block}{Compile as C++}
+            \lstinputlisting{05_c_cpp_1.cpp}
+        \end{block}
+
+        \begin{block}{Compile as C}
+            \lstinputlisting{05_c_cpp_2.c}
+        \end{block}
+    }
+    \only<2>{
+        \begin{block}{Including C declaration from C++ code}
+            \lstinputlisting{05_extern_C.txt}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Variadic functions}
+    \lstinputlisting{05_variadic_func.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{ABI}
+    \begin{block}{ABI}
+        ABI is the interface between two program modules, one of which is often a library or operating system, at the level of machine code.
+        An ABI determines such details as:
+        \begin{itemize}
+            \item sizes, layout, and alignment of data types
+            \item the calling convention, which controls how functions' arguments are passed and return values retrieved
+            \item how an application should make system calls to the operating system
+            \item other details (may specify mangling scheme, exception propagation, binary objects format, etc.)
+        \end{itemize}
+    \end{block}
+    System V Application Binary Interface (AMD64)    \href{http://www.x86-64.org/documentation/abi.pdf}{\beamergotobutton{Link}} \\
+    System V Application Binary Interface (Intel386) \href{http://math-atlas.sourceforge.net/devel/assembly/abi386-4.pdf}{\beamergotobutton{Link}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Preprocessor capabilities}
+    \begin{itemize}
+        \item conditionally compile of parts of source file (\kwblue{\#if}, \kwblue{\#ifdef}, \kwblue{\#ifndef}, \kwblue{\#else}, \kwblue{\#elif} and \kwblue{\#endif})
+        \item replace text macros, concatenating or quoting identifiers (\kwblue{\#define} and \kwblue{\#undef}, operators \kwblue{\#} and \kwblue{\#\#})
+        \item include other files (\kwblue{\#include})
+        \item cause a warning or an error (\kwblue{\#warning}, \kwblue{\#error})
+        \item implementation defined behavior (\kwblue{\#pragma})
+  %     file name and line information available to the preprocessor (controlled by directives #line)
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Include guard}
+    \lstinputlisting{05_include_guard_example.txt}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Standard predefined macros}
+    \lstinputlisting{05_predef_macros.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Variadic macros (since C99)}
+    \lstinputlisting[numbers=none]{05_variadic_macros.txt}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\kwblack{\#} and \kwblack{\#\#} example}
+    \only<1>{
+        \lstinputlisting{05_prepro_sharp1_ex.c}
+    }
+    \only<2>{
+        \lstinputlisting{05_prepro_sharp2_ex.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unsafe macros}
+    \only<1>{
+        \lstinputlisting{05_unsafe_macro.c}
+    }
+    \only<2>{
+        \lstinputlisting[numbers=none]{05_unsafe_macro1.txt}
+    }
+    \only<3>{
+        \lstinputlisting[numbers=none]{05_unsafe_macro2.txt}
+    }
+    \only<4>{
+        \begin{block}{This is the single right solution here}
+            \lstinputlisting[numbers=none]{05_unsafe_macro3.txt}
+        \end{block}
+    }
+    \only<5>{
+        \begin{block}{Macro with side effects}
+            \lstinputlisting{05_macro_side_effects_0.c}
+        \end{block}
+    }
+    \only<6>{
+        \begin{block}{Macro with side effects}
+            \lstinputlisting{05_macro_side_effects_0.c}
+        \end{block}
+        \begin{block}{Solution using inline function (C99)}
+            \lstinputlisting{05_macro_side_effects_1.c}
+        \end{block}
+    }
+    \only<7>{
+        \begin{block}{Macro with side effects}
+            \lstinputlisting{05_macro_side_effects_0.c}
+        \end{block}
+        \begin{block}{Solution using GCC extentions}
+            \lstinputlisting{05_macro_side_effects_2.c}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

@@ -1,0 +1,11 @@
+#define SWAP(x, y) \
+    tmp = x;       \
+    x = y;         \
+    y = tmp;       \
+
+...
+
+int x, y, z, tmp;
+
+if (z == 0)
+    SWAP(x, y);

@@ -1,0 +1,15 @@
+#define SWAP(x, y) \
+    do {           \
+        tmp = x;   \
+        x = y;     \
+        y = tmp;   \
+} while (0)
+
+...
+
+int x, y, z, tmp;
+
+if (z == 0)
+    SWAP(x, y);
+else
+    do_something_else();

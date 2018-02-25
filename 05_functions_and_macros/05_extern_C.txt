@@ -1,0 +1,12 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+     /* C linkage functions */
+     void func1(void);
+     void func2(int y);
+     void func3(int a, char b);
+
+#ifdef __cplusplus
+}
+#endif
