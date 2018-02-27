@@ -1,0 +1,7 @@
+TEX_SRC = $(wildcard *.tex)
+
+#all:
+#	pdflatex $(TEX_SRC)
+
+clean:
+	rm -rf *.toc *.log *.nm *.aux *.nava *.out *.snm *.nav *.pdf *.vrb
