@@ -1,0 +1,10 @@
+char buf[20], *p;
+
+if (n >= sizeof(buf))
+    p = malloc(n);
+else
+    p = buf;
+
+/* do something */
+
+free(p);

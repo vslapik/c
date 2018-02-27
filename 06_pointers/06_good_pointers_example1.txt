@@ -1,0 +1,21 @@
+/* ... */
+
+void func(int *x, int *y, int *z, int n)
+{
+    int *p = NULL;
+    int *q = NULL;
+
+    CHKPTR(x);
+    CHKPTR(y);
+    CHKPTR(z);
+
+    p = malloc(sizeof(*p));
+    q = calloc(n, sizeof(*q));
+    CHKPTR(p);
+    CHKPTR(q);
+
+    /* do something */
+
+    FREE(p);
+    FREE(q);
+}

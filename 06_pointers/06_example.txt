@@ -1,0 +1,10 @@
+int x = 1, y = 2, z[10];
+int *ip;    /* ip is a pointer to int */
+int *ip2;   /* ip2 is an another pointer to int */
+
+ip = &x;    /* ip points to x */
+y = *ip;    /* now y stores 1 */
+*ip = 0;    /* now x stores 0 */
+ip = &z[0]; /* ip points to z[0] */
+ip2 = ip;   /* ip2 now stores the same pointer as ip */
+*ip += 1;   /* now variable pointed by ip incremented by 1 */

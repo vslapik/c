@@ -1,0 +1,155 @@
+\input{../head.tex}
+
+\title{\Rmnum{6}. Pointers}
+
+%TODO: strict aliasing, -fstrict-aliasing
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Pointer examples}
+    \lstinputlisting[numbers=none]{06_example.txt}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Pointer arithmetic}
+    \only<1>{
+        There are several arithmetic operations defined on pointers to data:
+        \begin{itemize}
+            \item adding an integer to a pointer
+            \item substracting an integer from a pointer
+            \item substructing two pointers from each other
+            \item comparing pointers
+        \end{itemize}
+    }
+    \only<2>{
+        \lstinputlisting{06_pointer_arithm_example.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\kwblack{void *}}
+    \only<1>{
+        \lstinputlisting[numbers=none]{06_void.c}
+    }
+    \only<2>{
+        A pointer to \kwblue{void} (\kwblue{void *}) is a general-purpose pointer used to hold references to any data type.
+        \begin{itemize}
+            \item you can't perform integer arithmetic on \kwblue{void *}
+            \item you can't dereference \kwblue{void *}
+            \item you can assign a void pointer to any data type pointer without explicit cast
+            \item \kwblue{void *} have the same representation and memory alignment as a pointer to \kwblue{char}
+        \end{itemize}
+    }
+    \only<3>{
+        \justifying
+        Below is the canonical example of an abstract data type (ADT) implementation for stack structure. \kwblack{stack\_t} is an \textcolor{blue}{opaque pointer}.
+        \lstinputlisting{06_void_ptr_ADT.h}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Opaque pointers}
+    \justifying
+    \textcolor{blue}{opaque pointer} is a special case of an opaque data type, a datatype declared to be a pointer to a record or data structure of some unspecified type.
+
+    \begin{tabular}{lll}
+        \lstinputlisting{06_opaque_example_ok.c} & \: &
+        \lstinputlisting{06_opaque_example_fail.c} \\
+    \end{tabular}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Null pointer}
+    \only<1>{
+        \justify
+        For each pointer type, there is a special value \- the "null pointer" \- which is distinguishable from all other pointer values and which is "guaranteed to compare unequal to a pointer to any object or function". In other words "null pointer"\: is not the address of any object or function.
+    }
+    \only<2>{
+        \begin{itemize}
+            \item null pointer has value called null pointer constant - integer constant expression with value 0 (or (\kwblue{void} *)0)
+            \item \hdr{stddef.h} usually has a definition to represent the null pointer constant such as \texttt{\kwblue{\#define} NULL ((\kwblue{void} *)0)}
+            \item \justifying an initialization, assignment, or comparison when one side is a variable or expression of pointer type, the compiler can tell that a constant 0 on the other side requests a null pointer, and generate the correctly-typed null pointer value
+            \item the actual internal representation of null pointers is implementation-defined; NULL and 0 are language-level symbols that represent a null pointer
+            \item dereferencing of a null pointer leads to \textcolor{red}{undefined behaviour}
+        \end{itemize}
+    }
+    \only<3>{
+        \lstinputlisting{06_null_deref.c}
+    }
+    \only<4>{
+        \lstinputlisting{06_null_pointer_mmap.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Wild pointers}
+    \lstinputlisting{06_wild_pointer.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Dangling pointers}
+    \lstinputlisting{06_dangling_pointer.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Pointers hygiene}
+    \only<1>{
+        \begin{itemize}
+            \item Always initialize pointers when declare them
+            \item Always check pointers before using them
+            \item Always check a return value of functions which allocate memory
+            \item Assign null pointer constant to pointers after deallocating memory pointed by them
+        \end{itemize}
+    }
+    \only<2>{
+            \lstinputlisting{06_good_pointers_example.h}
+    }
+    \only<3>{
+            \lstinputlisting{06_good_pointers_example1.txt}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Function pointers}
+    \only<1>{
+        \begin{block}{Declaration of function}
+            \lstinputlisting[numbers=none]{05_func_decl.txt}
+        \end{block}
+        \begin{block}{Declaration of function pointer}
+            \lstinputlisting[numbers=none]{05_func_ptr_decl.txt}
+        \end{block}
+    }
+    \only<2>{
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{06_func_ptr_example_sigaction.c}
+    }
+    \only<3>{
+        \lstinputlisting{06_func_ptr_example_sigaction.h}
+    }
+    \only<4>{
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{06_func_ptr_example_qsort.c}
+    }
+    \only<5>{
+        \lstinputlisting{06_func_ptr_example_qsort.h}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Pointers and \kwblack{const}}
+    \only<1>{
+        \lstinputlisting{06_const_and_ptr.c}
+    }
+    \only<2>{
+        \lstinputlisting{06_const_and_ptr_examples.h}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Common mistakes with pointers}
+    \only<1>{
+        \lstinputlisting{06_p_trap1.c}
+    }
+    \only<2>{
+        \lstinputlisting{06_p_trap2.txt}
+    }
+    \only<3>{
+        \lstinputlisting{06_double_free.c}
+    }
+    \only<4>{
+        \lstinputlisting{unaligned_access.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
