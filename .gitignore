@@ -10,3 +10,5 @@
 *.s
 tree*.png
 tree*.dot
+*.o
+core

@@ -4,4 +4,4 @@ TEX_SRC = $(wildcard *.tex)
 #	pdflatex $(TEX_SRC)
 
 clean:
-	rm -rf *.toc *.log *.nm *.aux *.nava *.out *.snm *.nav *.pdf *.vrb
+	rm -rf *.toc *.log *.nm *.aux *.nava *.out *.snm *.nav *.pdf *.vrb *.o core
