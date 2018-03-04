@@ -1,0 +1,118 @@
+\input{../head.tex}
+
+\title{\Rmnum{7}. Arrays}
+
+%TODO:  multi-dimension arrays and allocation of memory for it
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Arrays}
+    \justifying
+    C provides data structure called \textcolor{green}{the array}, which can 
+    store a fixed-size sequential collection of elements of the same type.
+    \begin{itemize}
+        \item Arrays in C declared as follows:
+            \\~\\
+            \texttt{type array\_name[array\_size];}
+            \\~\\
+        \item For accessing the values of the elements of an array the array subscript operator is used:
+            \\~\\
+            \texttt{ai = a[i];}
+            \\~\\
+        \item Array subscript numbering begins at 0
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Arrays initialization}
+    \only<1>{
+        \lstinputlisting{07_arrays_init.c}
+    }
+%    \only<2>{
+%        "https://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Designated-Inits.html"
+%    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Pointers and arrays}
+    \only<1>{
+        \lstinputlisting{07_pointers_and_arrays.c}
+    }
+    \only<2>{
+        \begin{block}{
+           \justifying
+           Arrays decompose to pointers when passed to a function 
+           as an argument, or when converted to an r-value on the right-hand-side 
+           of the assignment operator.}
+           \lstinputlisting{07_array_to_ptr_decay_1.c}
+        \end{block}
+    }
+    \only<3>{
+        \begin{block}{
+           \justifying
+           Arrays decompose to pointers when passed to a function 
+           as an argument, or when converted to an r-value on the right-hand-side 
+           of the assignment operator.}
+           \lstinputlisting{07_array_to_ptr_decay_2.c}
+        \end{block}
+    }
+    \only<4>{
+       \lstinputlisting{07_odd_syntax_statement.c}
+       }
+    \only<5>{
+        Will it work as expected?
+
+        \begin{block}{main.c}
+           \lstinputlisting{07_extern_array_1.c}
+        \end{block}
+
+        \begin{block}{array.c}
+           \lstinputlisting{07_extern_array_2.c}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multi-dimensional arrays}
+    \lstinputlisting{07_multi_arrays.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Variable length arrays}
+    \note{runtime sizeof, alloca}
+    \only<1>{
+        Before VLA support:
+        \lstinputlisting{c99_vla1.c}
+    }
+    \only<2>{
+        With VLA support added:
+        \lstinputlisting{c99_vla2.c}
+    }
+    \only<3>{
+        Before VLA support:
+        \lstinputlisting{c99_vla3.c}
+    }
+    \only<4>{
+        With VLA support added:
+        \lstinputlisting{c99_vla4.c}
+    }
+    \only<5>{
+        \textbf{alloca} example:
+        \lstinputlisting{07_alloca_example.c}
+    }
+    \only<6>{
+        \begin{center}
+            \includegraphics[height=7cm]{stack_frame.png}
+        \end{center}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\kwblack{cdecl} is your friend}
+   \lstinline[basicstyle=\ttfamily\large]{char *(*c[10])(int (*)(const char*))}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\kwblack{typedef} is your friend}
+    \lstinputlisting[numbers=none]{07_typedef.h}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
