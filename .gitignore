@@ -12,3 +12,4 @@ tree*.png
 tree*.dot
 *.o
 core
+*.tar.gz

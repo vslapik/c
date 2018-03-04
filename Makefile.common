@@ -1,7 +1,13 @@
 TEX_SRC = $(wildcard *.tex)
 
-#all:
-#	pdflatex $(TEX_SRC)
+help:
+	@echo "make all - to build all slides"
+	@echo "make clean - to remove slides and builds artefacts"
 
-clean:
-	rm -rf *.toc *.log *.nm *.aux *.nava *.out *.snm *.nav *.pdf *.vrb *.o core
+build_pdf:
+	pdflatex $(TEX_SRC)
+
+clean_tex:
+	rm -rf *.toc *.log *.nm *.aux *.nava *.snm *.nav *.vrb
+clean_obj:
+	rm -rf *.o core *.pdf *.out

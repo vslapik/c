@@ -1,4 +1,4 @@
 include ../Makefile.common
 
-all:
-	pdflatex $(TEX_SRC)
+all: build_pdf
+clean: clean_tex clean_obj
