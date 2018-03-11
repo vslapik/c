@@ -1,0 +1,6 @@
+struct __attribute__ ((__packed__)) {
+    char a[3];
+    short int b;
+    long int c;
+    char d[3];
+};

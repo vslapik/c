@@ -1,0 +1,6 @@
+struct {
+    char a[3];
+    short int b;
+    long int c;
+    char d[3];
+};

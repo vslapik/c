@@ -1,0 +1,157 @@
+\input{../head.tex}
+
+\title{\Rmnum{8}. Structures and unions}
+
+\begin{document}
+
+%TODO: strict-aliasing
+%TODO: enums
+%TODO: struct, unions and enums define namespaces
+%TODO: slide for packed structs with the whole at the end ...
+%TDOD: designed initializator for structures, GCC version using member:value syntax (not .member = value)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Structure declaration}
+    \lstset{
+        numbers=none,
+    }
+    \only<1>{
+        \lstinputlisting{08_struct_decl_syntax.txt}
+    }
+    \only<2>{
+        \lstinputlisting{08_struct_decl.c}
+    }
+    \only<3>{
+        \lstinputlisting{08_struct_decl_2.c}
+    }
+    \lstset{
+        numbers=left,
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Operations on structures}
+    \only<1>{
+        There are several operations defined on structures:
+        \begin{itemize}
+            \item assign a structure to another structure
+            \item pass a structure to a function
+            \item return a structure from a function
+        \end{itemize}
+        \vskip 20pt
+        A few more points to mention:
+        \begin{itemize}
+            \item you can treat an array as a first-class type if put it inside a structure
+            \item in general you have to write your own function to compare structures
+        \end{itemize}
+    }
+    %\only<2>{
+    %    \lstinputlisting{08_struct_compare.c}
+    %}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Structure members access}
+    \lstinputlisting{struct_member_access.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Structure initialization}
+    \only<1>{
+        %\lstinputlisting[basicstyle=\ttfamily]{08_struct_init.c}
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{08_struct_init.c}
+    }
+    \only<2>{
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{08_struct_init_2.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Structure padding}
+    \only<1>{
+        \lstinputlisting{08_struct_pack.c}
+    }
+    \only<2>{
+        \lstinputlisting{08_struct_padding.c}
+    }
+    \only<3>{
+        \lstset{
+            numbers=none,
+        }
+        \begin{tabular}{llll}
+            \specialcellhl{
+                \lstinputlisting{08_alignm_png_struct.txt}
+            } &
+            \specialcellhl{
+                \includegraphics[width=4cm]{08_alignm_02.png}
+            } \\
+            \specialcellhl{
+                \lstinputlisting{08_alignm_png_struct_packed.txt}
+            } &
+            \specialcellhl{
+                \includegraphics[width=4cm]{08_alignm_01.png}
+            } \\
+        \end{tabular}
+        \lstset{
+            numbers=left,
+        }
+    }
+    \only<4>{
+        \begin{center}
+            \includegraphics[width=8.5cm]{08_alignm_expl.png}
+        \end{center}
+    }
+    \only<5>{
+        Can a compiler rearrange the members inside a structure in order to avoid padding? The answer is "No".
+        \begin{block}{C11 \textsection{6.7.2.15}}
+            Within a structure object, the non-bit-field members and the units in which bit-fields
+            reside have addresses that increase in the order in which they are declared.
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Bit fields}
+    \only<1>{
+        \lstinputlisting{08_bit_field_example.c}
+    }
+    \only<2>{
+        \begin{itemize}
+            \item the total number of bits in a single bit field must not exceed the total number of bits in its declared type
+            \item bit fields do not have addresses (can't use \kwblue{\&} operator on them)
+            \item \kwblue{sizeof} operator may not be applied to bit fields
+            \item it is not allowed to define an array of bit fields
+        \end{itemize}
+        \begin{block}{Kernighan \& Ritchie \textsection{6.9}}
+            Almost everything about [bit] fields is implementation-dependent.
+        \end{block}
+        \begin{itemize}
+            \item it is implementation defined whether a bit field declared as type \kwblue{int} is signed or unsigned
+            \item the packing order of bitfields is implementation defined
+            \item whether or not a bitfield may cross a storage unit boundary is implementation defined
+        \end{itemize}
+    }
+    \only<3>{
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{08_bits_manipulation_bitfields.c}
+    }
+    \only<4>{
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{08_bits_manipulation_macros.c}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unions}
+    \only<1>{
+        \lstinputlisting[numbers=none]{08_union_decl_syntax.txt}
+    }
+    \only<2>{
+        \lstinputlisting[numbers=none]{08_union_example.c}
+    }
+    \only<3>{
+        \lstinputlisting{08_union_example_2.c}
+    }
+    \only<4>{
+        \lstinputlisting[basicstyle=\ttfamily\tiny]{08_union_example_3.c}
+    }
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

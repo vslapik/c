@@ -1,0 +1,7 @@
+struct optional_tag {
+    type_1 identifier_1;
+    type_2 identifier_2;
+    ...
+    type_N identifier_N;
+} optional_variable_definitions;
+
