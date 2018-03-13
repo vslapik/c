@@ -1,0 +1,3 @@
+p = malloc(m * n);
+if (p)
+    memset(p, 0, m * n);

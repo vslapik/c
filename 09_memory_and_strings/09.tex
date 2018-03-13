@@ -1,0 +1,142 @@
+\input{../head.tex}
+
+\title{\Rmnum{9}. Memory management and strings}
+
+\begin{document}
+
+%TODO: algorithm Shmaela http://timurv.livejournal.com/32560.html strcat
+%TODO: mention mempools concept and talloc library
+%TODO: provide alternative to gets getwd
+%TODO: tell about strncpy and it's odd behaviour and why it not replacement for strcpy (UNIX directory entry)
+
+%TODO: functions to afraid and avoid: strcpy, strcat, sprintf (vsprintf)
+%TODO: realloc(x, 0), realloc(0, x)
+%TODO: memory functions
+%TODO: don't p = realloc(p, n) because you lose pointer value if mem allocation failed
+
+%TODO: strcoll and strerror are missing
+%TODO: strchr problem (const correctness)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Standard functions to work with dynamic memory}
+    \lstinputlisting[numbers=none]{09_std_funcs.h}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Non-standard function to work with dynamic memory}
+    \lstinputlisting[numbers=none]{09_nonstd_funcs.h}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Memory leak}
+    \lstinputlisting{09_memleack.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Double free}
+    \lstinputlisting{09_double_free.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Invalid access}
+    \lstinputlisting{09_invalid_access.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Corner cases}
+    \only<1>{
+        \texttt{malloc, realloc, calloc, aligned\_alloc for zero size}
+        \begin{block}{C11 \textsection{7.22.3}}
+            \justifying
+            If the size of the space requested is zero, the behavior is implementation defined:
+            either a null pointer is returned, or the behavior is as if the size
+            were some nonzero value, except that the returned pointer shall not be
+            used to access an object.
+        \end{block}
+    }
+    \only<2>{
+        \texttt{free for a null pointer}
+        \begin{block}{C11 \textsection{7.22.3.3}}
+            \justifying
+            The free function causes the space pointed to by ptr to be deallocated, that is, made
+            available for further allocation. If ptr is a null pointer, no action occurs.
+        \end{block}
+    }
+    \only<3>{
+        \texttt{realloc for a null pointer}
+        \begin{block}{C11 \textsection{7.22.3.5}}
+            \justifying If ptr is a null pointer, the realloc function behaves like
+            the malloc function for the specified size.
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Memory functions from \hdr{string.h}}
+    \lstinputlisting{mem_funcs.h}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{calloc vs malloc + memset}
+    \lstset{
+        numbers=none,
+    }
+    \begin{center}
+        What is "better"?
+        \vskip 20pt
+        \begin{tabular}{ccc}
+            \lstinputlisting{09_calloc.txt} &
+            \:\: vs \:\: &
+            \lstinputlisting{09_malloc.txt} \\
+        \end{tabular}
+    \end{center}
+    \lstset{
+        numbers=left,
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Strings representation}
+    \lstinputlisting{09_str_repr.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{String literals}
+    \only<1>{
+        \lstinputlisting{09_str_literals.c}
+    }
+    \only<2>{
+         "If the program attempts to modify a string literal of either form, the behavior is undefined.
+         This specification allows implementations to share copies of strings with identical text,
+         to place string literals in read-only memory, and perform certain optimizations."
+    }
+    \only<3>{
+        "Type of string literals in C is \lstinline[basicstyle=\ttfamily\large]{char []},
+        array for string literal is statically allocated."
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{String comparison and assignment}
+    \lstinputlisting{09_str_cmp_assign.c}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Standard string functions from \hdr{string.h}}
+    \lstinputlisting{09_str_funcs.h}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Popular non-standard string functions}
+    \lstinputlisting{09_str_funcs_nonstd.h}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Copying strings}
+    \only<1>{ Bad: \lstinputlisting{09_strcpy_1.c} }
+    \only<2>{ Bad: \lstinputlisting{09_strcpy_2.c} }
+    \only<3>{ Bad: \lstinputlisting{09_strcpy_3.c} }
+    \only<4>{ Bad: \lstinputlisting{09_strcpy_4.c} }
+    \only<5>{ You always MUST check the size of the buffer you are writing into: \lstinputlisting{09_strcpy_5.c} }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{String functions vulnerable to buffer overflow}
+    \begin{itemize}
+        \item gets() (removed in C11), use fgets() instead
+        \item getwd() (POSIX, marked as obsolete), use getcwd() instead
+        \item strcpy() and strcat() are potentially unsafe, strlcpy() or strlcat() may be an alternative
+        \item sprintf() should be avoided, either snprintf() (C99) or asprintf() (GNU)
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
