@@ -1,0 +1,1 @@
+../05_functions_and_macros/c99_remove_implicit_function_declaration.c
