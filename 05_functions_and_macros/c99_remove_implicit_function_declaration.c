@@ -7,7 +7,7 @@ int main(void)
 
     for (i = 0; i < 10; i++)
     {
-        char *ptr = (char*)malloc(0x10000000);
+        char *ptr = (char *)malloc(0x10000000);
         *ptr = 'a';
     }
 

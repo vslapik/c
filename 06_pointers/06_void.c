@@ -12,7 +12,7 @@ ptr = &i;   /* ptr contains address of an integer variable */
 ptr = &f;   /* ptr contains address of a float variable */
 ptr = &s;   /* ptr contains address of data with type stuct S */
 
-*((char*)ptr);      /* access char data */
-*((int*)ptr);       /* access int data */
-*((float*)ptr);     /* access float data */
-*((struct S*)ptr);  /* access struct S */
+*((char *)ptr);      /* access char data */
+*((int *)ptr);       /* access int data */
+*((float *)ptr);     /* access float data */
+*((struct S *)ptr);  /* access struct S */

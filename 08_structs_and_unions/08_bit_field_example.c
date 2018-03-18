@@ -1,7 +1,7 @@
 #include <stdbool.h>
 
 struct page {
-    char* name;
+    char *name;
     int is_writable:1;
     int is_readable:1;
     int is_executable:1;

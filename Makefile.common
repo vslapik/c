@@ -10,4 +10,4 @@ build_pdf:
 clean_tex:
 	rm -rf *.toc *.log *.nm *.aux *.nava *.snm *.nav *.vrb
 clean_obj:
-	rm -rf *.o core *.pdf *.out
+	rm -rf *.o core *.pdf *.out *.i *.s *.S *.a

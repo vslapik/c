@@ -4,7 +4,7 @@
 int main(void)
 {
     char s1[] = "Hello ";
-    char* s2 = "world!";
+    char *s2 = "world!";
 
     if (strcmp(s1, s2) == 0) // can't use just s1 == s2
         puts("Equal\n");
