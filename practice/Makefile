@@ -10,8 +10,9 @@ $(DOCUMENT): $(DOCUMENT_TEX)
 	pdflatex $<
 
 all:
-	./huff text -c aa --dump-tree --dump-table > text.log
+	./huff text -c out --dump-tree --dump-table > text.log
 	make
+	-rm out
 
 pdf: $(DOCUMENT)
 
@@ -32,6 +33,7 @@ $(DOCUMENT_TEX): Makefile $(IMAGES)
 	echo "\\\begin{frame}[fragile]" >> $@; \
 	echo "\\\justifying" >> $@; \
 	cat text >> $@; \
+	echo >> $@; \
 	echo "\\\end{frame}" >> $@; \
 	echo "\\\begin{frame}[fragile]" >> $@; \
 	echo "\\\scriptsize" >> $@; \
