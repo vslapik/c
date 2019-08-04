@@ -3,6 +3,7 @@ TEX_SRC = $(wildcard *.tex)
 help:
 	@echo "make all - to build all slides"
 	@echo "make clean - to remove slides and builds artefacts"
+	@echo "make arch - pack all slides to an archive"
 
 build_pdf:
 	pdflatex $(TEX_SRC)
