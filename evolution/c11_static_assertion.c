@@ -1,3 +1,4 @@
+#include <assert.h> // for static_assert macro
 #include <stddef.h>
 
 struct __attribute__((packed)) B {
@@ -13,7 +14,7 @@ struct A{
 
 int main(int argc, char **argv)
 {
-    _Static_assert(sizeof(void *) == 4,
-        "64-bit code generation not supported");
+    static_assert(sizeof(void *) == 4,
+        "64-bit code generation is not supported");
     return 0;
 }

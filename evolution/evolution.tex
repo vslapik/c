@@ -8,7 +8,7 @@
 %
 %TODO: typeof extension, very useful
 %TODO: gcc ({}) block returning value, useful for macros
-%TODO: pre-c11 alternative to _Static_assert
+%TODO: gcc function attributes (printf-like functions fmt checking)
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -541,7 +541,13 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{C11 features: static assertion}
-    \lstinputlisting{c11_static_assertion.c}
+    \only<1>{
+        \lstinputlisting{c11_static_assertion.c}
+    }
+    \only<2>{
+        c89 approach to emulate static assertions
+        \lstinputlisting{c89_static_assertion.c}
+    }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{C11 features: an exclusive create-and-open mode ("...x") for fopen}
