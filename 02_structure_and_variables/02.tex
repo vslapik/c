@@ -6,6 +6,9 @@
 
 %TODO: const vars has external linkage in C but internal in C++ (as with static)
 %TODO: tentative definitions for variables
+%TODO: signed integer representation (prior c2x - sign and magnitude,
+%      two’s complement, one’s complement, after - only two's compliment)
+%TODO: float points representation and limits (precision loss)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\titlepage}
@@ -69,7 +72,7 @@
             \begin{itemize}
                 \item integer constants
                 \begin{tabular}{lll}
-                    no prefix    & \texttt{44}    & \textbf{int}           \\
+                    no suffix    & \texttt{44}    & \textbf{int}           \\
                     \texttt{U}   & \texttt{55U}   & \textbf{unsigned int}  \\
                     \texttt{L}   & \texttt{66L}   & \textbf{long int}      \\
                     \texttt{LL}  & \texttt{77LL}  & \textbf{long long int} \\
@@ -78,7 +81,7 @@
             \begin{itemize}
                 \item float-point constants
                 \begin{tabular}{lll}
-                    no prefix    & \texttt{4.0}   & \textbf{double}        \\
+                    no suffix    & \texttt{4.0}   & \textbf{double}        \\
                     \texttt{F}   & \texttt{6.6F}  & \textbf{float}         \\
                     \texttt{L}   & \texttt{75e3L} & \textbf{long double}   \\
                 \end{tabular}

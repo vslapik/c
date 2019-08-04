@@ -13,3 +13,4 @@ tree*.dot
 *.o
 core
 *.tar.gz
+practice.tex
