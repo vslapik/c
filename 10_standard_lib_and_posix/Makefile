@@ -1,2 +1,2 @@
-TARGET = L3
+TARGET := L10
 include ../Makefile.common

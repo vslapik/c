@@ -1,14 +1,18 @@
-TEX_SRC = $(wildcard *.tex)
+TEX_SRC := $(wildcard *.tex)
+DEP     := $(shell cat ${TEX_SRC} | grep lstinputlisting | sed -e 's/.*{\(.*\)}.*/\1/g')
+
+$(TARGET).pdf: $(DEP) $(TEX_SRC)
+	pdflatex -jobname $(TARGET) $(TEX_SRC)
+
+.PHONY: clean_text clean_obj clean help
 
 help:
 	@echo "make all - to build all slides"
 	@echo "make clean - to remove slides and builds artefacts"
 	@echo "make arch - pack all slides to an archive"
 
-build_pdf:
-	pdflatex $(TEX_SRC)
-
 clean_tex:
 	rm -rf *.toc *.log *.nm *.aux *.nava *.snm *.nav *.vrb
 clean_obj:
 	rm -rf *.o core *.pdf *.out *.i *.s *.S *.a
+clean: clean_tex clean_obj

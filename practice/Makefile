@@ -1,26 +1,26 @@
 #DOTOPT := -Gsize=11.7,8.2 -Gratio=fill
 DOTOPT := -Gsize=13,9 -Gdpi=300 -Goverlap=false
-DOCUMENT := practice.pdf
-DOCUMENT_TEX := practice.tex
-IMAGES = $(patsubst %.dot, %.png, $(DOTS))
+TARGET := practice
+TARGET_SRC := $(TARGET).tex
+TARGET_PDF := $(TARGET).pdf
 DOTS = $(wildcard *.dot)
+IMAGES = $(patsubst %.dot, %.png, $(DOTS))
 
+$(TARGET_PDF): $(DEP) $(TEX_SRC)
+	make text.log
+	make $(TARGET_SRC)
+	pdflatex -jobname $(TARGET) $(TARGET_SRC)
 
-$(DOCUMENT): $(DOCUMENT_TEX)
-	pdflatex $<
-
-all:
+text.log:
 	./huff text -c out --dump-tree --dump-table > text.log
-	make
 	-rm out
 
-pdf: $(DOCUMENT)
+.PHONY: debug clean
 
 debug:
 	echo '\\textbf{code} & \\texbf{frequency} & \\textbf{huffman} & \\textbf{code} & \\texbf{frequency} & \\texbf{huffman} \\' >> $@; \
 
-
-$(DOCUMENT_TEX): Makefile $(IMAGES)
+$(TARGET_SRC): Makefile $(IMAGES) text.log
 	echo "\\\input{../head.tex}" > $@; \
 	echo "\\\title{Practice (Implementing Huffman archiver)}" >> $@; \
 	echo "\\\begin{document}" >> $@; \
@@ -72,4 +72,4 @@ clean:
 	-rm -rf *.dot
 	-rm -rf *.huf
 	-rm -rf *.vrb
-	-rm -rf  $(DOCUMENT)
+	-rm -rf *.pdf

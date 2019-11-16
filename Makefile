@@ -1,26 +1,34 @@
-include Makefile.common
+ARCH := c.tar.gz
+LIT  := literature
 
-SHELL=/bin/bash
-
-all:
+all: $(LIT).pdf
 	for a in $$(ls); do \
         if [ -d $$a ]; then \
             echo "========================= $$a ======================"; \
-            $(MAKE) -C $$a $@; \
+            $(MAKE) -C $$a; \
         fi; \
     done;
-	pdflatex literature.tex
 	@echo "Done!"
 
-clean: clean_tex clean_obj
+$(LIT).pdf: $(LIT).tex
+	pdflatex $<
+
+clean:
 	for a in $$(ls); do \
         if [ -d $$a ]; then \
             echo "========================= $$a ======================"; \
             $(MAKE) -C $$a clean;\
         fi; \
     done;
+	rm -rf $(LIT).pdf
+	rm -rf $(ARCH)
 	@echo "Done!"
 
-arch:
-	@find . -name \*.pdf -print0 | tar -czvf c.tar.gz --null -T -
+.PHONY: arch
 
+arch: $(ARCH)
+
+$(ARCH):
+	find . -name \*.pdf -print0 | tar -czvf $(ARCH) --null -T -
+
+include Makefile.common

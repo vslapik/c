@@ -1,4 +1,5 @@
 digraph flow {
+    graph [fontsize=24];
     "as" [style=filled, fillcolor=yellow,label="Assembler (as)" ];
     "ld" [style=filled, fillcolor=yellow,label="Linker (ld)"];
     "cpp" [style=filled, fillcolor=yellow,label="Preprocessor (cpp)"];
@@ -15,7 +16,7 @@ digraph flow {
     "a" [style=filled, fillcolor=gray,label="Static library\n hooks.a"];
     "so" [style=filled, fillcolor=gray,label="Dynamic library\n libpthread.so"];
     "libc" [style=filled, fillcolor=gray,label="Dynamic C runtime library\n libc.so"];
-    "startup" [style=filled, fillcolor=gray,label="Statrtup code"];
+    "startup" [style=filled, fillcolor=gray,label="Start-up code"];
     "elf" [style=filled, fillcolor=gray,label="Executable module in ELF format"];
     "mains" [style=filled, fillcolor=gray,label="Compiler output\n main.s"];
     "utils" [style=filled, fillcolor=gray,label="Compiler output\n util.s"];

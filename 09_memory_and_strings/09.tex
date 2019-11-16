@@ -79,9 +79,10 @@
         What is "better"?
         \vskip 20pt
         \begin{tabular}{ccc}
-            \lstinputlisting{09_calloc.txt} &
-            \:\: vs \:\: &
-            \lstinputlisting{09_malloc.txt} \\
+            \lstinputlisting{09_calloc.txt}
+            & \:\: vs \:\: &
+            \lstinputlisting{09_malloc.txt}
+            \\
         \end{tabular}
     \end{center}
     \lstset{
@@ -121,11 +122,16 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Copying strings}
-    \only<1>{ Bad: \lstinputlisting{09_strcpy_1.c} }
-    \only<2>{ Bad: \lstinputlisting{09_strcpy_2.c} }
-    \only<3>{ Bad: \lstinputlisting{09_strcpy_3.c} }
-    \only<4>{ Bad: \lstinputlisting{09_strcpy_4.c} }
-    \only<5>{ You always MUST check the size of the buffer you are writing into: \lstinputlisting{09_strcpy_5.c} }
+    \only<1>{ Bad: \lstinputlisting{09_strcpy_1.c}
+    }
+    \only<2>{ Bad: \lstinputlisting{09_strcpy_2.c}
+    }
+    \only<3>{ Bad: \lstinputlisting{09_strcpy_3.c}
+    }
+    \only<4>{ Bad: \lstinputlisting{09_strcpy_4.c}
+    }
+    \only<5>{ You always MUST check the size of the buffer you are writing into: \lstinputlisting{09_strcpy_5.c}
+    }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{String functions vulnerable to buffer overflow}
