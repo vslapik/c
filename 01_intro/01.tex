@@ -11,10 +11,11 @@
 %    - the course is rather about how not to write instead of how to write
 %    - traps/common mistakes, etc.
 % 2. Why English
-% 3. Linux, only Linux
+% 3. Linux
 % 4. Audience: refresh/deepen knowledge, a bit challanging for newcomers
 % 5. Strongly suggest implementing practical task
-% 6. Timetable (10 lectures + 1 lecture for practice analyze) around 1:40 each
+% 6. Timetable
+% 7. Practice
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\titlepage}
@@ -84,27 +85,26 @@
         \scriptsize{
         \rowcolors{1}{oddrow}{evenrow}
         \begin{tabular}{ll}
-            \texttt{-c}            & \specialcellhl{Compile or assemble the source files, but do not link; \\
+            \texttt{-c}              & \specialcellhl{Pre-process and compile or assemble the source files, but do not link; \\
                                         the output is object files.} \\
-            \texttt{-S}            & Compile only; output assembly code. \\
-            \texttt{-E}            & Pre-process only; output pre-processed code. \\
-            \texttt{-std=standart} & \specialcellhl{Determine the language standard; could be but not limited to\\
+            \texttt{-S}              & Compile only; the output is assembly code. \\
+            \texttt{-E}              & Pre-process only; the output is pre-processed code. \\
+            \texttt{-std=standart}   & \specialcellhl{Determine the language standard; could be but not limited to\\
                                         \texttt{c89}, \texttt{c99}, \texttt{c11}, \texttt{gnu11} (default).} \\
-            \texttt{-g}            & Produce debug information. \\
-            \texttt{-pg}           & \specialcellhl{Generate extra code to write profile information \\
-                                        suitable for the analysis program gprof.} \\
-            \texttt{-Olevel}       & Optimization level from \texttt{0} (default) to \texttt{3}; also can be \texttt{-Ofast}, \texttt{-Os}.\\
-            \texttt{-Wwarn}        & \specialcellhl{Enable \texttt{warn} warning; frequently used are: \\
-                                        \texttt{all}, \texttt{pedantic}, \texttt{error}, \texttt{format}.} \\
-            \texttt{-llibrary}     & \specialcellhl{Links to a standard library; use -lm for maths library (libm.so).} \\
-            \texttt{-Dmacro}       & Define a macro, one can also use \texttt{-Dmacro=val}. \\
-            \texttt{-Umacro}       & \specialcellhl{Undefine any previous definition of name, either built-in \\
+            \texttt{-g}              & Generate debug information and store it in the executable. \\
+            \texttt{-pg}             & \specialcellhl{Generate extra code to write profile information for \texttt{gprof}.}\\
+            \texttt{-Olevel}         & Optimization level from \texttt{0} (default) to \texttt{3}; also can be \texttt{-Ofast}, \texttt{-Os}.\\
+            \texttt{-Wwarn}          & \specialcellhl{Enable \texttt{warn} warning; frequently used are: \texttt{all}, \texttt{error}, \texttt{format}.} \\
+            \texttt{-llibrary}       & \specialcellhl{Links to a standard library; use -lm for maths library (libm.so).} \\
+            \texttt{-Dmacro}         & Define a macro, one can also use \texttt{-Dmacro=val}. \\
+            \texttt{-Umacro}         & \specialcellhl{Undefine any previous definition of name, either built-in \\
                                         or provided with a \texttt{-D} option.} \\
-            \texttt{-Idir}         & \specialcellhl{Add the directory dir to the head of the list of directories \\
+            \texttt{-Idir}           & \specialcellhl{Add the directory dir to the head of the list of directories \\
                                         to be searched for header files.} \\
-            \texttt{-Ldir}         & \specialcellhl{Add directory \texttt{dir} to the list of directories to be searched for \texttt{-l}.} \\
-            \texttt{@file}         & Read command-line options from file. \\
-            \texttt{-save-temps}   & Save intermediate files in the current directory. \\
+            \texttt{-Ldir}           & \specialcellhl{Add directory \texttt{dir} to the list of directories to be searched for \texttt{-l}.} \\
+            \texttt{@file}           & Read command-line options from file. \\
+            \texttt{-save-temps}     & Save intermediate files in the current directory. \\
+            \texttt{-fsanitize=kind} & Enable run-time issues detector, common are: \texttt{undefined}, \texttt{address}. \\
 
         \end{tabular}
         }
