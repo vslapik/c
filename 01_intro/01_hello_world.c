@@ -1,14 +1,14 @@
-/* 1. compile with -save-temps to see intermediate files */
-/* 2. compile with -v to see compilation steps */
+/* 1. compile with -v to see the compilation steps */
+/* 2. compile with -save-temps to see the intermediate files */
 
 #include <stdio.h>
 
-#define NUMBER 0
+#define MAGIC_NUMBER 42
 
 int main(int argc, char **argv)
 {
     printf("Hello, world!\n");
-    printf("%d\n", NUMBER);
+    printf("%d\n", MAGIC_NUMBER);
 
     return 0;
 }
