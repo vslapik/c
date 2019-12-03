@@ -6,8 +6,6 @@
 
 %TODO: const vars has external linkage in C but internal in C++ (as with static)
 %TODO: tentative definitions for variables
-%TODO: signed integer representation (prior c2x - sign and magnitude,
-%      two’s complement, one’s complement, after - only two's compliment)
 %TODO: float points representation and limits (precision loss)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,6 +163,43 @@
         \item \textbf{complex} modifier (real types only), C99, without \hdr{complex.h} - \textbf{\_Complex}
     \end{itemize}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Negative values representation in C}
+ISO C states that an implementation must choose one of three different representations for integral data types:
+    \begin{itemize}
+        \item two's complement
+        \item ones' complement
+        \item sign/magnitude
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Floating-point types in C}
+%    \only<1>{
+%        \lstinputlisting{010203.c}
+%    }
+%    \only<2>{
+%        The idea is to compose a number of two main parts:
+%        \begin{itemize}
+%            \item significand that contains the number’s digits; negative significands represent negative numbers.
+%            \item exponent that says where the decimal (or binary) point is placed relative to the beginning of the significand;
+%        \end{itemize}
+%    }
+%    \only<3>{
+%        \begin{center}
+%    Majority of hardware and programming languages use floating-point numbers in the same binary formats, which are defined in the IEEE 754 standard. The usual formats are 32 (single precision) or 64 bits (double precision):
+%            \rowcolors{1}{oddrow}{evenrow}
+%            \begin{tabular}{c|c|c|c}
+%                Precision         & Single        & Double \\ \hline
+%                Total bits        &  32           & 64     \\
+%                Sign bits         &  1            & 1      \\
+%                Significand bits  &  23           & 52     \\
+%                Exponent bits     &  8            & 11     \\
+%                Smallest number   &  2 * 2\textsuperscript(-126}            & 64     \\
+%                Largest number    &  2 * 2\textsuperscript{127}  & 64     \\
+%            \end{tabular}
+%        \end{center}
+%    }
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Common traps}
     \only<1>{
