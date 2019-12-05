@@ -7,6 +7,7 @@
 %TODO: const vars has external linkage in C but internal in C++ (as with static)
 %TODO: tentative definitions for variables
 %TODO: float points representation and limits (precision loss)
+%TODO: endianness? here?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\titlepage}
@@ -53,9 +54,9 @@
             \begin{itemize}
                 \item decimal: \textbf{1234}
                 \item octal: \textbf{01234}, \textbf{0}
-                \item hexidecimal: \textbf{0x1234}
+                \item hexadecimal: \textbf{0x1234}
                 \item floating-point: \textbf{123.456e-67}
-                \item hexidecimal floating-point: \textbf{0xf.4p2} (0xf.4$\times{2}^2$ = 61) (C99)
+                \item hexadecimal floating-point: \textbf{0xf.4p2} (0xf.4$\times{2}^2$ = 61) (C99)
             \end{itemize}
         \note{character constants have type int}
         \item character: \textbf{'A'}
@@ -146,15 +147,15 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{C data types}
-    \note{signess of char}
-    \note{The char type is distinct from both signed char and unsigned char, but is guaranteed to have the same representation as one of thema.}
+    \note{signedness of char}
+    \note{The char type is distinct from both signed char and unsigned char, but is guaranteed to have the same representation as one of them.}
     \note{mention limits.h}
     \begin{itemize}
         \item \textbf{char}: at least 8 bit, \texttt{sizeof(char) == 1}, CHAR\_BIT macro
-        \item \textbf{short}: at least 16 bit, greater or equlal to \texttt{sizeof(char)}
-        \item \textbf{int}: at least 16 bit, greater or equlal to \texttt{sizeof(short)}
-        \item \textbf{long}: at least 32 bit, greater or equlal to \texttt{sizeof(int)}
-        \item \textbf{long long}: C99, at least 64 bit, greater or equlal to \texttt{sizeof(long)}
+        \item \textbf{short}: at least 16 bit, greater or equal to \texttt{sizeof(char)}
+        \item \textbf{int}: at least 16 bit, greater or equal to \texttt{sizeof(short)}
+        \item \textbf{long}: at least 32 bit, greater or equal to \texttt{sizeof(int)}
+        \item \textbf{long long}: C99, at least 64 bit, greater or equal to \texttt{sizeof(long)}
         \item \textbf{bool}: C99, at least one bit, without \hdr{stdbool.h} - \textbf{\_Bool}
         \item \textbf{float}: single precision, at least 6 decimal digits
         \item \textbf{double}: double precision, at least 10 decimal digits
@@ -249,7 +250,7 @@ ISO C states that an implementation must choose one of three different represent
             \item allocated
             \item register
             \item extern
-            \item thread (since C11), variables declard with \textbf{\_Thread\_local} keyword (\textbf{thread\_local} if include \hdr{threads.h} header)
+            \item thread (since C11), variables declared with \textbf{\_Thread\_local} keyword (\textbf{thread\_local} if include \hdr{threads.h} header)
         \end{itemize}
     }
     \only<2>{
@@ -271,5 +272,12 @@ ISO C states that an implementation must choose one of three different represent
     }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Summary}
+    \begin{itemize}
+        \item Understand data types representation.
+        \item Understand run-time memory layout on your platform.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
