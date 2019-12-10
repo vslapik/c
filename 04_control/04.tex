@@ -2,7 +2,7 @@
 
 \title{\Rmnum{4}. Control structures}
 
-%TODO: Duff's device
+%TODO: gcc ({}) block returning value, useful for macros
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,6 +17,10 @@
     }
     \only<2>{
         \lstinputlisting{04_compound_example.c}
+    }
+    \only<3>{
+        GCC extension, compound statement returning value
+        \lstinputlisting{comp_statement_gcc.c}
     }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,6 +42,26 @@
         \end{block}
         \begin{block}{What about this?}
             \lstinputlisting{04_selection_example_tern_u.c}
+        \end{block}
+    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Switch fallthrough behaviour}
+    \only<1>{
+        \lstinputlisting{fallthrough.c}
+    }
+    \only<2>{
+        \begin{block}{Duff's Device}
+            \begin{tabular}{ll}
+                \lstinputlisting{duff_device1.c} & \\
+            \end{tabular}
+        \end{block}
+    }
+    \only<3>{
+        \begin{block}{Duff's Device}
+            \begin{tabular}{ll}
+                \lstinputlisting{duff_device1.c} & \lstinputlisting{duff_device2.c}
+            \end{tabular}
         \end{block}
     }
 \end{frame}
