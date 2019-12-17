@@ -1,4 +1,4 @@
-void *ptr;  /* ptr is declared as void pointer */
+void *ptr;  /* ptr is declared as a void pointer */
 char c;
 int i;
 float f;
