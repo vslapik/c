@@ -1,9 +1,9 @@
 #include <stdbool.h>
 
-#define GET_BIT(r, m) ((r) & (m)) 
-#define SET_BIT(r, m) ((r) |= (m)) 
-#define CLEAR_BIT(r, m) ((r) &= ~(m)) 
-#define FLIP_BIT(r, m) ((r) ^= (m)) 
+#define GET_BIT(r, m)   ((r) & (m))
+#define SET_BIT(r, m)   ((r) |= (m))
+#define CLEAR_BIT(r, m) ((r) &= ~(m))
+#define FLIP_BIT(r, m)  ((r) ^= (m))
 
 #define RXC  0x80 // USART Receive Complete
 #define TXC  0x40 // USART Transmit Complete
