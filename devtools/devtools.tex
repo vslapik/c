@@ -1,0 +1,57 @@
+\input{../head.tex}
+
+\title{Development tools}
+
+\begin{document}
+\frame{\titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{make}
+\justifying Make is a build automation tool that automatically builds executable programs and 
+libraries from source code by reading files called Makefiles which specify how to 
+derive the target program. \newline
+
+Useful options:
+    \begin{itemize}
+        \item \textbf{-d} to print debugging information in addition to normal processing
+        \item \textbf{-jN} to specify the number of jobs to run simultaneously
+        \item \textbf{-p} to print data base (rules and variable values) that results from reading the makefiles
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{binutils}
+The GNU Binutils are a collection of binary tools. The main ones are \textbf{ld} (the GNU linker) and \textbf{as} (the GNU assembler).
+Additional useful tools from it which often used:
+
+    \begin{itemize}
+        \item \textbf{addr2line} - Converts addresses into filenames and line numbers.
+        \item \textbf{ar} - A utility for archives manipulations.
+        \item \textbf{c++filt} - Filter to demangle encoded C++ symbols.
+        \item \textbf{gprof} - Displays profiling information.
+        \item \textbf{nm} - Lists symbols from object files.
+        \item \textbf{objcopy} - Copies and translates object files.
+        \item \textbf{objdump} - Displays information from object files.
+        \item \textbf{readelf} - Displays information from ELF object files.
+        \item \textbf{size} - Lists the section sizes of an object or archive file.
+        \item \textbf{strings} - Lists printable strings from files.
+        \item \textbf{strip} - Discards symbols.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{valgrind}
+\justifying Valgrind is an instrumentation framework for building dynamic analysis tools.
+There are Valgrind tools that can automatically detect many memory management and threading bugs,
+and profile your programs in detail. You can also use Valgrind to build new tools. \newline
+
+Popular tools:
+    \begin{itemize}
+        \item \textbf{memcheck} detects memory-management problems, targeted mainly at C and C++, detects invalid memory access, use of un-initialized memory, memory leaks, double frees, bad frees, mis-uses of memory functions
+        \item \textbf{cachegrind} a cache profiling tool
+        \item \textbf{callgrind} a call profiling tool
+        \item \textbf{hellgrind} a thread debugger which finds data races in multithreaded programs
+    \end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
